@@ -133,7 +133,3 @@ music.addEventListener("ended",function(){
     playButton.textContent="播放音乐";
 });
 const coords = document.getElementById("coords");
-
-document.addEventListener("mousemove", function(event) {
-    coords.textContent = `X: ${event.clientX}, Y: ${event.clientY}`;
-});
