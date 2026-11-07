@@ -1,0 +1,153 @@
+body{
+    background-color: rgb(187, 244, 225);
+    text-align:center;/*让文本居中*/
+}
+h1{
+    color:rgb(74, 167, 140);
+}
+button{
+    background-color:rgb(156, 239, 139);
+    color:white;
+    /*按钮里文字的颜色*/
+    border-radius:10px;
+    /*按钮四个角的圆润程度*/
+    padding:12px 24px;
+    /*第一个是上下内边距，第二个是左右，也就是文字到边框的距离*/
+    font-size:16px;
+    /*把文字大小设置成16像素*/
+    border:none;
+    /*去掉按钮的边框*/
+    cursor:pointer;
+    /*cursor是鼠标指针的样式，pointer代表小手形状的指针*/
+}
+button:hover{               /*hover是鼠标悬停在button上的意思*/
+    background-color: rgb(22, 104, 76);
+    transition:background-color 0.3s;
+
+}
+.drop-zone{
+    background-color:rgb(141, 198, 184);
+    border:2px dashed rgb(32, 81, 32);/*dashed是虚线边框,solid是实线*/
+    border-radius:12px;
+    padding:30px;
+    /*设置内部边距*/
+    width:350px;
+    /*宽度*/
+    margin:100px auto;
+    /*外边距，与padding对应；auto是自动调整居中的意思*/
+    position:relative;
+
+}
+.drop-zone > p{/*选中dropzone里面的文字*/
+    position:relative;
+    z-index:2;
+}
+.dropCover{
+    position:absolute;
+    top:0; left:0; width:100%; height:100%;
+    background-color:rgb(141, 198, 184) ;
+    pointer-events: none;/*不会遮住鼠标的拖拽任务*/
+    z-index:1;
+    border-radius: 10px;
+}
+.catOne{
+    position:absolute;
+    bottom:100%;/*让catOne低端紧贴上边缘*/
+    left:50%;
+    z-index:0;
+}
+.mapOne{
+    display:block;
+    transition:transform 0.5s ease;
+}
+.catOne:hover .mapOne{/*hover和.mapOne中间要用空格隔开！！！*/
+    transform:translateY(85%);
+}
+/*小猫动画*/
+@keyframes catsway{
+    0%{
+        transform:translate(0px,0px) rotate(-5deg);/*逆时针旋转5度*/
+    }
+    25%{
+        transform:translate(10px,-5px) rotate(0deg);
+    }
+    50%{
+        transform:translate(10px,0px) rotate(5deg)
+    }
+    75%{
+        transform:translate(10px,-5px) rotate(0deg);
+    }
+    100%{
+        transform:translate(0px,0px) rotate(-5deg);
+    }
+}
+
+.catOne.playing{/*这样两个.变量没有空格的连在一起，就是两个class*/
+    animation:catsway 2s infinite ease-in-out;/*infinite是无限循环，ease-in-out是动作开始和结束比较平滑*/
+}
+#progressBar{
+    width:300px;
+    height:10px;
+    background-color:rgb(147, 140, 140);
+    margin:0 auto;/*margin控制框的位置，两个数字分别是上下间距、左右间距*/
+    border-radius: 10px;
+}
+#progressFill{
+    width:0%;
+    height: 100%;
+    background-color: rgb(112, 218, 241);
+    border-radius:10px
+}
+#songName{
+    background-color: rgb(158, 235, 208);
+    border-radius: 10px;
+   width:fit-content ;/*让边框紧贴着文字*/
+   text-align:center;
+   margin:15px auto;
+}
+.page{
+    display:flex;/*默认主轴方向是横向*/
+    gap:30px;
+}
+#song-list{
+    width:300px;
+    background-color: rgb(142, 216, 191);
+    border-radius: 10px;
+    max-height: 350px;
+    overflow-y: auto;
+}
+.player{
+    flex:1;
+}    
+.song-item{
+    background-color: rgb(215, 240, 240);
+    padding:10px;/*内部四周的空间*/
+    width:85%;
+    border-radius: 15px;
+    margin:5px auto;
+}
+/*注意，这里要用class或者id的名字，因此不写songItem*/
+.song-item:hover{
+    background-color: rgb(188, 243, 225);
+    transition:background-color 0.3s;
+}
+#coords {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    color: black;
+    z-index: 9999;
+}
+/* 默认（暂停）：只显示闭嘴，微笑嘴先藏起来 */
+.mouthSmile{
+    display:none;
+}
+/* 注意这三条选择器：playing 在父元素 .catOne 上，
+   mouthStop / mouthSmile 是它内部的子元素，中间必须留空格（后代选择器） */
+.catOne.playing .mouthStop{
+    display: none;
+}
+.catOne.playing .mouthSmile{
+    display:inline;
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head><!--网页的配置信息-->
+    <meta charset="UTF-8"><!--设置字符编码，支持中文-->
+    <title>Cat Music Player</title><!--title是浏览器标签页显示的名称-->
+    <link rel="stylesheet" href="style.css">
+<!--rel是relationship，说明关联的资源是什么-->
+<!--stylesheet就是告诉浏览器要插入什么样式的东西-->
+<!--href是指定资源位置-->
+
+</head>
+
+
+<body>
+    <div id="coords"></div>
+    <h1>🐱 欢迎来到像素猫音乐播放器</h1><!--h1是网页的大标题-->
+    
+    <p>😊来添加一首你喜欢的音乐吧!</p><!--p是网页的普通文字-->
+    
+   <div class="page"> <!--左侧歌曲列表-->
+    <div id="song-list">
+        <h2>播放列表</h2>
+        <div id="songList"></div>
+    </div>
+   <!--右侧播放器-->
+   <div class="player">
+     <p id="songName">当前未选择歌曲</p>
+    <!--上一首歌按钮-->
+    <button id="last">⏮</button>
+    <!--音乐播放按钮-->
+    <button id="playButton">播放音乐</button><!--给予一个id，让js方便查找-->
+    <!--下一首歌按钮-->  
+    <button id="next">⏭</button><!--同级按钮就默认放在同一行，按顺序排列，样式也一样-->
+    <!--音乐播放时间数字的显示-->
+    <p>
+        <span id="currentMusicT">00:00</span><!--span默认两个p中间的内容在同一行-->
+        /
+        <span id="musicTime">00:00</span>
+    </p>
+    <!--音乐进度条-->
+    <div id="progressBar"><!--整条进度条-->
+        <div id="progressFill"></div><!--内层已播放部分,这部分写在第一个div里面，刚好证明这个是内层-->
+    </div>
+    <!--音乐拖入区域-->
+    <div class="drop-zone">
+        <p>🎵将音乐拖入到这里</p>
+        <!--建一个遮挡-->
+        <div class="dropCover"></div>
+        <!--开始画第一支小猫-->
+        <div class="catOne">
+            <svg class="mapOne" width="90" height="60" viewBox="10 30 90 60">
+                <g class="catOneHead" transform="scale(1.5)">
+            <!-- 小猫身体填充层 -->
+                <path
+                d="M 15 60 Q 6 43 18 36 Q 21 18 30 37 Q 39 33 45 39 Q 52 20 56 41 Q 61 49 56 60 Z"
+                fill="#F5EBDD"
+                stroke="none"
+                />
+                <!--眼睛-->
+                <ellipse
+                cx="26" cy="46" rx="2" ry="4" fill="black"/>
+                <ellipse
+                cx="42" cy="47" rx="2" ry="4" fill="black"/>
+                <!--外轮廓-->
+                <path
+                d="M 15 60 Q 6 43 18 36 "
+                stroke="black"
+                stroke-width="3"
+                stroke-linecap="round"
+                fill="none"
+                />
+                <path
+                d="M 19 38 Q  21 18 30 37"
+                stroke="black"
+                stroke-width="3"
+                stroke-linecap="round"
+                fill="none"
+                />
+                <path
+                d="M 29 38 Q 39 33 45 39"
+                stroke="black"
+                stroke-width="3"
+                stroke-linecap="round"
+                fill="none"
+                />
+                <path
+                d="M 44 40 Q 52 20 56 41"
+                stroke="black"
+                stroke-width="3"
+                stroke-linecap="round"
+                fill="none"
+                />
+                <path
+                d="M 56 42 Q 61 49 56 60"
+                stroke="black"
+                stroke-width="3"
+                stroke-linecap="round"
+                fill="none"
+                />
+                <g class="mouthSmile">
+                    <path d="M 32 52 Q 36 54 39 52" stroke="black" stroke-width="2" stroke-linecap="round"/>
+                </g>
+                <g class="mouthStop">
+                     <ellipse cx="34" cy="52" rx="2" ry="4" fill="none" stroke-width="2" stroke="black"/>
+                </g>
+                </g>
+            </svg> 
+        </div>
+    </div>
+    <audio id="music"></audio><!--audio是音频，id是随便一个变量名-->
+    <script src="script.js"></script>
+</body>
+</html>
